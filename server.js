@@ -60,11 +60,11 @@ const packageJSON = fs.existsSync("./package.json")
 
 const getHelpMessage = (botName) =>
   [
-    `Bot Name: ${botName ? `@${botName}` : "(unknown)"}`,
-    `Revision: \`${REVISION.substring(0, 7)}\``,
-    `Use trace.moe with API Key? ${TRACE_MOE_KEY ? "`true`" : "`false`"}`,
-    `Anilist Info Endpoint: ${ANILIST_API_URL}`,
-    `Homepage: ${packageJSON?.homepage ?? ""}`,
+    `Hi, I'm Neptune,`,
+    `I Can Help You Detect Anime By Its Screenshot or GIF.`,
+    ``,
+    `Support: @Maid_Robot`,
+    `More Projects: @AnimeRobots`,
   ].join("\n");
 
 app.disable("x-powered-by");
