@@ -67,6 +67,10 @@ const getHelpMessage = (botName) =>
     `More Projects: @AnimeRobots`,
   ].join("\n");
 
+const photoUrl = "https://telegra.ph/file/2c5ad9b921bcf1d8dc45b.jpg";
+const buttonText = "Don't Forget To Give Review 🌟";
+const buttonUrl = "https://t.me/AnimeRobots/16";
+
 app.disable("x-powered-by");
 app.set("trust proxy", 1);
 app.use(
@@ -312,12 +316,23 @@ const privateMessageHandler = async (message) => {
   const responding_msg = message.reply_to_message ? message.reply_to_message : message;
   const imageURL = await getImageFromMessage(responding_msg);
   if (!imageURL) {
-    if (message.text?.toLowerCase().includes("/help")) {
+    if (message.text?.toLowerCase().includes("/start")) {
       return await sendMessage(message.chat.id, getHelpMessage(app.locals.botName), {
         parse_mode: "Markdown",
+        reply_markup: {
+          inline_keyboard: [
+            [
+              {
+                text: buttonText,
+                url: buttonUrl,
+              },
+            ],
+          ],
+        },
+        photo: photoUrl,
       });
     }
-    return await sendMessage(message.chat.id, "You can Send / Forward anime screenshots to me.");
+    return await sendMessage(message.chat.id, " Send / Forward anime screenshots or GIFs to me.");
   }
 
   await sendChatAction(message.chat.id, "typing");
