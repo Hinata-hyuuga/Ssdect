@@ -61,9 +61,9 @@ const packageJSON = fs.existsSync("./package.json")
 const getHelpMessage = () =>
   [
     `Hi, I'm Neptune,`,
-    `I Can Help You Detect Anime By Its Screenshot, GIF, Video or File Send me Anything XD`,
+    `I Can Help You Detect Anime By Its Screenshot or GIF`,
     ``,
-//    `Support: @Maid_Robot`,
+    `💬: @AnimeCommunityChat`,
 //    `More Projects: @AnimeRobots`,
   ].join("\n");
 
@@ -348,7 +348,7 @@ const privateMessageHandler = async (message) => {
   }
 
   if (message.text?.toLowerCase().includes("/help")) {
-    return await sendMessage(message.chat.id, "This is a bot that can help you identify the anime from a given anime screenshot or GIF. Simply send me the photo or GIF and I'll do the rest.", {
+    return await sendMessage(message.chat.id, "This bot can help you identify anime from screenshots, photos, gifs, and even video and document files.\n\nIn private chats 🔮:\nsimply send the media you want to identify.\nIn group chats 🌏:\nmention or tag me (@NeptuneaBot) in the media and I'll do the rest.", {
       parse_mode: "Markdown",
     });
   }
