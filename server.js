@@ -347,13 +347,18 @@ const privateMessageHandler = async (message) => {
 
               url: buttonUrl,
 
-            }
+            },
 
-          ]
+          ],
+          [
+            {
+              text: buttonText2,
+              url: buttonUrl2,
+            },
+          ],
+        ],
 
-        ]
-
-      }
+      },
 
     });
 
