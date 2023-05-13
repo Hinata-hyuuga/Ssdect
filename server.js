@@ -324,9 +324,9 @@ const privateMessageHandler = async (message) => {
   if (message.text?.toLowerCase().includes("/start")) {
 
     const buttonText = "Don't Forget to Give Review 🌟";
-
+    const buttonText2 = "➕ADD ME TO YOUR GROUP➕";
     const buttonUrl = "https://t.me/AnimeRobots/16";
-
+    const buttonUrl2 = "https://t.me/NeptuneaBot?startgroup=true",
     const VideotUrl = "https://telegra.ph/file/12293288f506b267f5871.mp4";
 
     const caption = getHelpMessage();
@@ -376,7 +376,7 @@ const privateMessageHandler = async (message) => {
 
     }
 
-    return await sendMessage(message.chat.id, "You can Send / Forward anime screenshots to me.");
+    return await sendMessage(message.chat.id, "Send me anime screenshots or GIFs, and I'll tell you which anime they're from!\n\nIn GROUPS Just mention me in the photo or GIF and I'll do the rest.");
 
   }
 
