@@ -316,7 +316,8 @@ const privateMessageHandler = async (message) => {
   const responding_msg = message.reply_to_message ? message.reply_to_message : message;
   const imageURL = await getImageFromMessage(responding_msg);
   if (!imageURL) {
-    if (message.text?.toLowerCase().includes("/start")) {
+    const botCommand = message.entities?.find(entity => entity.type === 'bot_command');
+    if (botCommand && botCommand.offset === 0 && botCommand.length === 6 && botCommand.text === '/start') {
       return await sendMessage(message.chat.id, getHelpMessage(app.locals.botName), {
         parse_mode: "Markdown",
         reply_markup: {
