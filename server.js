@@ -327,11 +327,11 @@ const privateMessageHandler = async (message) => {
 
     const buttonUrl = "https://t.me/AnimeRobots/16";
 
-    const photoUrl = "https://telegra.ph/file/2c5ad9b921bcf1d8dc45b.jpg";
+    const VideotUrl = "https://telegra.ph/file/12293288f506b267f5871.mp4";
 
     const caption = getHelpMessage();
 
-    return await sendPhoto(message.chat.id, photoUrl, {
+    return await sendVideo(message.chat.id, VideotUrl, {
 
       caption: caption,
       
