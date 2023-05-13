@@ -58,7 +58,7 @@ const packageJSON = fs.existsSync("./package.json")
   ? JSON.parse(fs.readFileSync("./package.json"))
   : null;
 
-const getHelpMessage = (botName) =>
+const getHelpMessage = () =>
   [
     `Hi, I'm Neptune,`,
     `I Can Help You Detect Anime By Its Screenshot or GIF.`,
@@ -66,6 +66,7 @@ const getHelpMessage = (botName) =>
     `Support: @Maid_Robot`,
     `More Projects: @AnimeRobots`,
   ].join("\n");
+
 
 // const photoUrl = "https://telegra.ph/file/2c5ad9b921bcf1d8dc45b.jpg";
 // const buttonText = "Don't Forget To Give Review 🌟";
@@ -328,12 +329,12 @@ const privateMessageHandler = async (message) => {
 
     const photoUrl = "https://telegra.ph/file/2c5ad9b921bcf1d8dc45b.jpg";
 
-    
+    const caption = getHelpMessage();
 
-    return await sendMessage(message.chat.id, "Welcome to my bot! Here's a photo for you:", {
+    return await sendMessage(message.chat.id, {
 
       photo: photoUrl,
-
+      caption: caption,
       reply_markup: {
 
         inline_keyboard: [
