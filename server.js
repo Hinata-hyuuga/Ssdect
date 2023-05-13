@@ -61,10 +61,10 @@ const packageJSON = fs.existsSync("./package.json")
 const getHelpMessage = () =>
   [
     `Hi, I'm Neptune,`,
-    `I Can Help You Detect Anime By Its Screenshot or GIF.`,
+    `I Can Help You Detect Anime By Its Screenshot, GIF, Video or File Send me Anything XD`,
     ``,
-    `Support: @Maid_Robot`,
-    `More Projects: @AnimeRobots`,
+//    `Support: @Maid_Robot`,
+//    `More Projects: @AnimeRobots`,
   ].join("\n");
 
 
