@@ -313,42 +313,28 @@ const getImageFromMessage = async (message) => {
   return false;
 };
 
+
 const privateMessageHandler = async (message) => {
-
   const responding_msg = message.reply_to_message ? message.reply_to_message : message;
-
   const imageURL = await getImageFromMessage(responding_msg);
 
-  
-
   if (message.text?.toLowerCase().includes("/start")) {
-
     const buttonText = "Don't Forget to Give Review 🌟";
     const buttonText2 = "➕ADD ME TO YOUR GROUP➕";
     const buttonUrl = "https://t.me/AnimeRobots/16";
     const buttonUrl2 = "https://t.me/NeptuneaBot?startgroup=true";
     const VideotUrl = "https://telegra.ph/file/12293288f506b267f5871.mp4";
-
     const caption = getHelpMessage();
 
     return await sendVideo(message.chat.id, VideotUrl, {
-
       caption: caption,
-      
       reply_markup: {
-
         inline_keyboard: [
-
           [
-
             {
-
               text: buttonText,
-
               url: buttonUrl,
-
             },
-
           ],
           [
             {
@@ -357,46 +343,33 @@ const privateMessageHandler = async (message) => {
             },
           ],
         ],
-
       },
-
     });
+  }
 
+  if (message.text?.toLowerCase().includes("/help")) {
+    return await sendMessage(message.chat.id, "This is a bot that can help you identify the anime from a given anime screenshot or GIF. Simply send me the photo or GIF and I'll do the rest.", {
+      parse_mode: "Markdown",
+    });
   }
 
   if (!imageURL) {
-
-    if (message.text?.toLowerCase().includes("/help")) {
-
-      return await sendMessage(message.chat.id, getHelpMessage(app.locals.botName), {
-
-        parse_mode: "Markdown",
-
-      });
-
-    }
-
-    return await sendMessage(message.chat.id, "Send me anime screenshots or GIFs, and I'll tell you which anime they're from!\n\nIn GROUPS Just mention me in the photo or GIF and I'll do the rest.");
-
+    return await sendMessage(message.chat.id, "💕");
   }
 
   await sendChatAction(message.chat.id, "typing");
-
   const result = await submitSearch(imageURL, responding_msg, message);
 
   if (result.video && !messageIsSkipPreview(message)) {
-
     const videoLink = messageIsMute(message) ? `${result.video}&mute` : result.video;
-
     const video = await fetch(videoLink, { method: "HEAD" });
 
     if (video.ok && video.headers.get("content-length") > 0) {
       const buttonText = "Search And Download This Anime 🍥";
       const buttonUrl = "http://t.me/AnimeDL_Robot";
+
       await sendVideo(message.chat.id, videoLink, {
-
         caption: result.text,
-
         parse_mode: "Markdown",
         reply_to_message_id: responding_msg.message_id,
         reply_markup: {
@@ -412,19 +385,13 @@ const privateMessageHandler = async (message) => {
       });
 
       return;
-
     }
-
   }
 
   await sendMessage(message.chat.id, result.text, {
-
     reply_to_message_id: responding_msg.message_id,
-
     parse_mode: "Markdown",
-
   });
-
 };
 
 
