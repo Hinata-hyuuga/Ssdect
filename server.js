@@ -402,14 +402,17 @@ const privateMessageHandler = async (message) => {
 
   }
 
-}
-
-
   await sendMessage(message.chat.id, result.text, {
+
     reply_to_message_id: responding_msg.message_id,
+
     parse_mode: "Markdown",
+
   });
+
 };
+
+
 
 const groupMessageHandler = async (message) => {
   if (!messageIsMentioningBot(message)) {
