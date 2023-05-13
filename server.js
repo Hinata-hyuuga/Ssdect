@@ -326,7 +326,7 @@ const privateMessageHandler = async (message) => {
     const buttonText = "Don't Forget to Give Review 🌟";
     const buttonText2 = "➕ADD ME TO YOUR GROUP➕";
     const buttonUrl = "https://t.me/AnimeRobots/16";
-    const buttonUrl2 = "https://t.me/NeptuneaBot?startgroup=true",
+    const buttonUrl2 = "https://t.me/NeptuneaBot?startgroup=true";
     const VideotUrl = "https://telegra.ph/file/12293288f506b267f5871.mp4";
 
     const caption = getHelpMessage();
