@@ -331,10 +331,10 @@ const privateMessageHandler = async (message) => {
 
     const caption = getHelpMessage();
 
-    return await sendMessage(message.chat.id, {
+    return await sendPhoto(message.chat.id, photoUrl, {
 
-      photo: photoUrl,
       caption: caption,
+      
       reply_markup: {
 
         inline_keyboard: [
