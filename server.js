@@ -386,15 +386,24 @@ const privateMessageHandler = async (message) => {
     const video = await fetch(videoLink, { method: "HEAD" });
 
     if (video.ok && video.headers.get("content-length") > 0) {
-
+      const buttonText = "Search And Download This Anime 🍥";
+      const buttonUrl = "http://t.me/AnimeDL_Robot";
       await sendVideo(message.chat.id, videoLink, {
 
         caption: result.text,
 
         parse_mode: "Markdown",
-
         reply_to_message_id: responding_msg.message_id,
-
+        reply_markup: {
+          inline_keyboard: [
+            [
+              {
+                text: buttonText,
+                url: buttonUrl,
+              },
+            ],
+          ],
+        },
       });
 
       return;
