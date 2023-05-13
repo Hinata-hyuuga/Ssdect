@@ -67,9 +67,9 @@ const getHelpMessage = (botName) =>
     `More Projects: @AnimeRobots`,
   ].join("\n");
 
-const photoUrl = "https://telegra.ph/file/2c5ad9b921bcf1d8dc45b.jpg";
-const buttonText = "Don't Forget To Give Review 🌟";
-const buttonUrl = "https://t.me/AnimeRobots/16";
+// const photoUrl = "https://telegra.ph/file/2c5ad9b921bcf1d8dc45b.jpg";
+// const buttonText = "Don't Forget To Give Review 🌟";
+// const buttonUrl = "https://t.me/AnimeRobots/16";
 
 app.disable("x-powered-by");
 app.set("trust proxy", 1);
