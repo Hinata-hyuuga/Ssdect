@@ -313,27 +313,65 @@ const getImageFromMessage = async (message) => {
 };
 
 const privateMessageHandler = async (message) => {
+
   const responding_msg = message.reply_to_message ? message.reply_to_message : message;
+
   const imageURL = await getImageFromMessage(responding_msg);
+
+  
+
+  if (message.text?.toLowerCase().includes("/start")) {
+
+    const buttonText = "Don't Forget to Give Review 🌟";
+
+    const buttonUrl = "https://t.me/AnimeRobots/16";
+
+    const photoUrl = "https://telegra.ph/file/2c5ad9b921bcf1d8dc45b.jpg";
+
+    
+
+    return await sendMessage(message.chat.id, "Welcome to my bot! Here's a photo for you:", {
+
+      photo: photoUrl,
+
+      reply_markup: {
+
+        inline_keyboard: [
+
+          [
+
+            {
+
+              text: buttonText,
+
+              url: buttonUrl,
+
+            }
+
+          ]
+
+        ]
+
+      }
+
+    });
+
+  }
+
   if (!imageURL) {
-    const botCommand = message.entities?.find(entity => entity.type === 'bot_command');
-    if (botCommand && botCommand.offset === 0 && botCommand.length === 6 && botCommand.text === '/start') {
+
+    if (message.text?.toLowerCase().includes("/help")) {
+
       return await sendMessage(message.chat.id, getHelpMessage(app.locals.botName), {
+
         parse_mode: "Markdown",
-        reply_markup: {
-          inline_keyboard: [
-            [
-              {
-                text: buttonText,
-                url: buttonUrl,
-              },
-            ],
-          ],
-        },
-        photo: photoUrl,
+
       });
+
     }
-    return await sendMessage(message.chat.id, " Send / Forward anime screenshots or GIFs to me.");
+
+    return await sendMessage(message.chat.id, "You can Send / Forward anime screenshots to me.");
+
   }
 
   await sendChatAction(message.chat.id, "typing");
@@ -341,17 +379,31 @@ const privateMessageHandler = async (message) => {
   const result = await submitSearch(imageURL, responding_msg, message);
 
   if (result.video && !messageIsSkipPreview(message)) {
+
     const videoLink = messageIsMute(message) ? `${result.video}&mute` : result.video;
+
     const video = await fetch(videoLink, { method: "HEAD" });
+
     if (video.ok && video.headers.get("content-length") > 0) {
+
       await sendVideo(message.chat.id, videoLink, {
+
         caption: result.text,
+
         parse_mode: "Markdown",
+
         reply_to_message_id: responding_msg.message_id,
+
       });
+
       return;
+
     }
+
   }
+
+}
+
 
   await sendMessage(message.chat.id, result.text, {
     reply_to_message_id: responding_msg.message_id,
